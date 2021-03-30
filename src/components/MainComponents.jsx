@@ -5,7 +5,7 @@ import { Field, reduxForm } from "redux-form";
 import Display from "./Display";
 
 const MainComponents = (props) => {
-  console.log(props.form);
+  console.log(props);
   const { handleSubmit, reset, valid } = props;
   const [valuess, setValuess] = useState(false);
 
@@ -14,7 +14,28 @@ const MainComponents = (props) => {
       <div className="col-md-3"></div>
       <label className="form-label col-md-2">{props.label} : </label>
 
-      <input {...props.input} type={props.type} classname="form-control" />
+      {props.type == "radio" ? (
+        <div>
+          <input
+            {...props.input}
+            type={props.type}
+            classname="form-control"
+            value="Male"
+          />
+          &nbsp;
+          <label>Male</label>&nbsp;&nbsp;
+          <input
+            {...props.input}
+            type={props.type}
+            classname="form-control"
+            value="Female"
+          />
+          &nbsp;
+          <label>Female</label>
+        </div>
+      ) : (
+        <input {...props.input} type={props.type} classname="form-control" />
+      )}
       <br />
       {props.meta.touched && props.meta.error && (
         <div style={{ color: "red" }}>{props.meta.error}</div>
@@ -22,6 +43,7 @@ const MainComponents = (props) => {
     </div>
   );
   const onSubmit = () => {
+    console.log("onsubmit calls");
     setValuess(true);
   };
   return (
@@ -45,6 +67,15 @@ const MainComponents = (props) => {
               label="Email"
             />
           </div>
+          <div className="form-group">
+            <Field
+              component={renderText}
+              type="radio"
+              name="gender"
+              label="Gender"
+            />
+          </div>
+
           <div className="form-group">
             <Field
               component={renderText}
