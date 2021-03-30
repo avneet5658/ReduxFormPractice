@@ -6,7 +6,7 @@ import Display from "./Display";
 
 const MainComponents = (props) => {
   console.log(props);
-  const { handleSubmit, reset, valid } = props;
+  const { handleSubmit, reset, valid, pristine } = props;
   const [valuess, setValuess] = useState(false);
 
   const renderText = (props) => (
@@ -106,7 +106,7 @@ const MainComponents = (props) => {
         </button>
         &nbsp;
         <button
-          disabled={!valid}
+          disabled={pristine}
           className="btn btn-warning"
           type="button"
           onClick={reset}
