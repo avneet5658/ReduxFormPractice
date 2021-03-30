@@ -7,6 +7,7 @@ import Display from "./Display";
 const MainComponents = (props) => {
   console.log(props.form);
   const { handleSubmit, reset, valid } = props;
+  const [valuess, setValuess] = useState(false);
 
   const renderText = (props) => (
     <div className="form-group col-md-12">
@@ -16,7 +17,6 @@ const MainComponents = (props) => {
       {props.meta.touched && props.meta.error && <div>{props.meta.error}</div>}
     </div>
   );
-  const [valuess, setValuess] = useState(false);
   const onSubmit = () => {
     setValuess(true);
   };
