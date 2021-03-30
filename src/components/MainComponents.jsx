@@ -10,11 +10,15 @@ const MainComponents = (props) => {
   const [valuess, setValuess] = useState(false);
 
   const renderText = (props) => (
-    <div className="form-group col-md-12">
-      <label className="form-label">{props.label} : </label>
+    <div className="form-group row ">
+      <div className="col-md-3"></div>
+      <label className="form-label col-md-2">{props.label} : </label>
+
       <input {...props.input} type={props.type} classname="form-control" />
       <br />
-      {props.meta.touched && props.meta.error && <div>{props.meta.error}</div>}
+      {props.meta.touched && props.meta.error && (
+        <div style={{ color: "red" }}>{props.meta.error}</div>
+      )}
     </div>
   );
   const onSubmit = () => {
@@ -118,13 +122,13 @@ const validate = (values) => {
   if (!values.password) {
     error.password = "Password is required";
   } else if (!values.password.match(smallalpha)) {
-    error.password = "Pasword must contain atleast one small alphabets";
+    error.password = "Contain atleast one small alphabets";
   } else if (!values.password.match(capalpha)) {
-    error.password = "Pasword must contain atleast one capital alphabets";
+    error.password = "Contain atleast one capital alphabets";
   } else if (!values.password.match(specialchars)) {
-    error.password = "Pasword must contain atleast one special alphabets";
+    error.password = "Contain atleast one special alphabets";
   } else if (values.password.length < 8) {
-    error.password = "Length of the password must greater than 8";
+    error.password = "Length must be greater than 8";
   }
   return error;
 };
